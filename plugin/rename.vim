@@ -33,6 +33,13 @@ function! s:createParentPath(filepath)
     call mkdir(l:dirname, 'p')
 endfunction
 
+function! s:relativePath(name)
+    let cwd = getcwd()
+    let l:name = resolve(expand(a:name))
+    let s = substitute(l:name, "^" . l:cwd . "/" , "", "")
+    return s
+endfunction
+
 function! Rename(name, bang)
     let l:name    = a:name
     let l:oldfile = expand('%:p')
@@ -58,7 +65,9 @@ function! Rename(name, bang)
     let v:errmsg = ''
 
     call s:createParentPath(l:name)
-    silent! exe 'saveas' . a:bang . ' ' . l:name
+
+    let l:relpath = s:relativePath(l:name)
+    silent! exe 'saveas' . a:bang . ' ' . l:relpath
 
     if v:errmsg =~# '^$\|^E329'
         let l:lastbufnr = bufnr('$')
