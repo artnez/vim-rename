@@ -1,17 +1,17 @@
 vim-rename
 ==========
 
-Rename a buffer within Vim and on the disk. Supports relative path.
+Rename the current buffer from within VIM. Supports relative paths.
 
 Usage
 -----
 
-Rename a file in place:
+Rename existing file in place:
 ```viml
 :Rename new_name_of_file
 ```
 
-Move a file:
+Move existing file somewhere:
 ```viml
 :Rename ../some_place/new_name_of_file`
 ```
