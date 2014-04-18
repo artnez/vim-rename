@@ -20,8 +20,6 @@
 
 command! -nargs=* -complete=file -bang Rename call Rename(<q-args>, '<bang>')
 
-autocmd BufWritePre * call CreateParentPath(expand('%:p'))
-
 function! s:createParentPath(filepath)
     if filereadable(a:filepath)
         return
